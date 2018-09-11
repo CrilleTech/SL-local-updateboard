@@ -3,7 +3,7 @@ import requests
 def SegersjoMotTumba():
     done = False
     while done == False:
-        r = requests.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=f96d6c1868c4430a9d631ef0d1c7701b&siteid=7263&timewindow=60")
+        r = requests.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=*add-api-key-here*&siteid=7263&timewindow=60")
         if CheckError(r.text) == False:
             done = True
             j = r.json()
@@ -18,7 +18,7 @@ def SegersjoMotTumba():
 def TumbaMotMarsta():
     done = False
     while done == False:
-        r = requests.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=f96d6c1868c4430a9d631ef0d1c7701b&siteid=9524&timewindow=60")
+        r = requests.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=*add-api-key-here*&siteid=9524&timewindow=60")
         if CheckError(r.text) == False:
             done = True
             j = r.json()
@@ -31,11 +31,11 @@ def TumbaMotMarsta():
             done = False
 
 def Deviations():
-    r = requests.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=f96d6c1868c4430a9d631ef0d1c7701b&siteid=9524&timewindow=60&bus=False")
+    r = requests.get("https://api.sl.se/api2/realtimedeparturesV4.json?key=*add-api-key-here*&siteid=9524&timewindow=60&bus=False")
     j = r.json()
     deviations = j['ResponseData']['StopPointDeviations']
     for dev in deviations:
-          if dev['Deviation']['ImportanceLevel'] > 2:
+          if dev['Deviation']['ImportanceLevel'] > 2:  #deviations and trafic stops based on the siteid as defined in URI
             print(dev['Deviation']['Text'])
 
 def CheckError(text):
